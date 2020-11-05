@@ -9,6 +9,7 @@ using HeThongKiemSoatRaVao.Models;
 
 namespace HeThongKiemSoatRaVao.Controllers
 {
+    
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
