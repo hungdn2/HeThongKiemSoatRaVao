@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SystemManageOutCome.Data.Entities
+namespace SystemManageOutCome.Application.Client.Catalog.CustomerService.Dtos
 {
-    public class Customers
+    public class CustomerViewModel
     {
 
         public int ID { set; get; }
@@ -20,8 +20,5 @@ namespace SystemManageOutCome.Data.Entities
         public Byte Image2 { set; get; }
         public Byte Image3 { set; get; }
         public string Description { set; get; }
-
     }
-
-
 }

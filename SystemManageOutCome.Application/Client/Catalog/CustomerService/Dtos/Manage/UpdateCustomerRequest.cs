@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SystemManageOutCome.Data.Entities
+namespace SystemManageOutCome.Application.Client.Customer
 {
-    public class Customers
+    public class UpdateCustomerRequest
     {
-
         public int ID { set; get; }
         public string FullName { set; get; }
         public bool Sex { set; get; }
@@ -14,14 +13,9 @@ namespace SystemManageOutCome.Data.Entities
         public int Company { set; get; }
         public int Member { set; get; }
         public string CMT { set; get; }
-        public DateTime DateIn { set; get; }
-        public DateTime DateOut { set; get; }
         public Byte Image1 { set; get; }
         public Byte Image2 { set; get; }
         public Byte Image3 { set; get; }
         public string Description { set; get; }
-
     }
-
-
 }

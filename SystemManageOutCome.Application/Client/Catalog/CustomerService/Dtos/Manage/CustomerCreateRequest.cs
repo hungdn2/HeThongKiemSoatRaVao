@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SystemManageOutCome.Data.Entities
+namespace SystemManageOutCome.Application.Client.Customer
 {
-    public class Customers
+   public  class CustomerCreateRequest
     {
-
         public int ID { set; get; }
         public string FullName { set; get; }
         public bool Sex { set; get; }
@@ -20,8 +19,5 @@ namespace SystemManageOutCome.Data.Entities
         public Byte Image2 { set; get; }
         public Byte Image3 { set; get; }
         public string Description { set; get; }
-
     }
-
-
 }

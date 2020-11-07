@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 using SystemManageOutCome.Data.Configurations;
 using SystemManageOutCome.Data.Entities;
@@ -6,7 +7,7 @@ using SystemManageOutCome.Data.Entities;
 
 namespace SystemManageOutCome.Data.EF
 {
-    public class SystemManageDBContext : DbContext
+    public class SystemManageDBContext : IdentityDbContext
     {
         public SystemManageDBContext( DbContextOptions options) : base(options)
         {
@@ -25,7 +26,7 @@ namespace SystemManageOutCome.Data.EF
         public DbSet<Role> roles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<User_Role> user_Roles { get; set; }
-        public DbSet<Customer> customers { get; set; }
+        public DbSet<Customers> customers { get; set; }
     }
 
 }
