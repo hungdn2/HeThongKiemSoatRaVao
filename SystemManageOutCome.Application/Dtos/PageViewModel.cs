@@ -6,7 +6,7 @@ namespace SystemManageOutCome.Application.Dtos
 {
     public class PageViewModel<T>
     {
-        List<T> Items { set; get; }
+        public List<T> Items { set; get; }
         public int TotalRecord { set; get; }
         
     }

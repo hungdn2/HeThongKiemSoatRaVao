@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SystemManageOutCome.Application.Client.Catalog;
@@ -20,13 +22,6 @@ namespace SystemManageOutCome.Application.Client.Customer
             _context = context;
        
         }
-        //public Task AddViewCount(int customerID)
-        //{
-        //    var Customer = await _context.customers.FindAsync(customerID);
-        //    Customer.
-
-        //}
-
 
 
         public async Task<int> Create(CustomerCreateRequest request)
@@ -51,21 +46,48 @@ namespace SystemManageOutCome.Application.Client.Customer
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<List<CustomerViewModel>> GetAll()
+        public Task<List<CustomerViewModel>> GetAll()
         {
             throw new NotImplementedException();
         }
 
-
-        public Task<PageViewModel<CustomerViewModel>> GetAllPaing(GetCustomerPaingRequest request)
+        public async Task<PageViewModel<CustomerViewModel>> GetAllPaing(GetCustomerPaingRequest request)
         {
-            throw new NotImplementedException();
+            // select 
+
+           // var query = from p in _context.customers select new { p };
+            var query = _context.customers.ToList();
+
+            //filter
+
+            if (!string.IsNullOrEmpty(request.Keyword))
+                query = query.Where(x => x.CMT.Contains(request.Keyword)).ToList();
+                
+            //3. Paing
+            int totalRow = query.Count();
+            var data = query.Skip(request.PageSize * (request.PageIndex - 1)).Take(request.PageSize).Select( x => new CustomerViewModel()
+            { 
+                ID = x.ID,
+                FullName = x.FullName,
+                
+            }).ToList();
+            // select and projecttion
+
+            var pageResult = new PageViewModel<CustomerViewModel>()
+            {
+                TotalRecord = totalRow,
+                Items = data
+            };
+            return pageResult;
+
+
         }
 
         public async Task<int>  Update(UpdateCustomerRequest request)
         {
-            throw new NotImplementedException();
-
+            var customer = await _context.customers.FindAsync(request.ID);
+            if(customer == null) throw new SystemManageOutComeException($"can't not find customer with id: {request.ID}");
+            return await _context.SaveChangesAsync();
         }
 
 

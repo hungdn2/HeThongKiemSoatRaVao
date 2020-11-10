@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-using SystemManageOutCome.Data.Configurations;
 using SystemManageOutCome.Data.Entities;
 
 
@@ -27,6 +26,7 @@ namespace SystemManageOutCome.Data.EF
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<User_Role> user_Roles { get; set; }
         public DbSet<Customers> customers { get; set; }
+        public DbSet<Department> departments { get; set; }
     }
 
 }

@@ -20,6 +20,8 @@ namespace SystemManageOutCome.Data.Entities
         public Byte Image2 { set; get; }
         public Byte Image3 { set; get; }
         public string Description { set; get; }
+        public string CreateBy { get; set; }
+        public string UpdateBy { get; set; }
 
     }
 
