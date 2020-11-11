@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SystemManageOutCome.Data.Entities
+namespace SystemManageSolution.ViewModel.Catalog.Customer.Manage
 {
-    public class Customers
+    public class CustomerCreateRequest
     {
-
         public int ID { set; get; }
         public string FullName { set; get; }
         public bool Sex { set; get; }
@@ -16,14 +16,10 @@ namespace SystemManageOutCome.Data.Entities
         public string CMT { set; get; }
         public DateTime DateIn { set; get; }
         public DateTime DateOut { set; get; }
-        public Byte Image1 { set; get; }
-        public Byte Image2 { set; get; }
-        public Byte Image3 { set; get; }
+        public byte Image1 { set; get; }
+        public byte Image2 { set; get; }
+        public byte Image3 { set; get; }
         public string Description { set; get; }
-        public string CreateBy { get; set; }
-        public string UpdateBy { get; set; }
-
+        public IFormFile ThumbnailImage { set; get; }
     }
-
-
 }

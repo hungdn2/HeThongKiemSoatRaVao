@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SystemManageOutCome.Application.Dtos;
+using SystemManageSolution.ViewModel.Common;
 
-namespace SystemManageOutCome.Application.Client.Catalog.Dtos.Manage
+namespace SystemManageSolution.ViewModel.Catalog.Customer.Manage
 {
     public class GetCustomerPaingRequest : PagingRequestBase
     {

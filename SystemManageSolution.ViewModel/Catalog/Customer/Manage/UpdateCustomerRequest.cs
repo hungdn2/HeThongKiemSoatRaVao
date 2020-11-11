@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SystemManageOutCome.Application.Client.Customer
+namespace SystemManageSolution.ViewModel.Catalog.Customer.Manage
 {
     public class UpdateCustomerRequest
     {
@@ -13,9 +14,10 @@ namespace SystemManageOutCome.Application.Client.Customer
         public int Company { set; get; }
         public int Member { set; get; }
         public string CMT { set; get; }
-        public Byte Image1 { set; get; }
-        public Byte Image2 { set; get; }
-        public Byte Image3 { set; get; }
+        public byte Image1 { set; get; }
+        public byte Image2 { set; get; }
+        public byte Image3 { set; get; }
         public string Description { set; get; }
+        public IFormFile ThumbnailImage { set; get; }
     }
 }

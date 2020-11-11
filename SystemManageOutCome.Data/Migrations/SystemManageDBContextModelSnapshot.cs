@@ -233,6 +233,36 @@ namespace SystemManageOutCome.Data.Migrations
                     b.ToTable("cameras");
                 });
 
+            modelBuilder.Entity("SystemManageOutCome.Data.Entities.CustomerImage", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Customerid")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateCreate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FileSize")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IsDefault")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("CustomerIm");
+                });
+
             modelBuilder.Entity("SystemManageOutCome.Data.Entities.Customers", b =>
                 {
                     b.Property<int>("ID")
@@ -263,15 +293,6 @@ namespace SystemManageOutCome.Data.Migrations
 
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte>("Image1")
-                        .HasColumnType("tinyint");
-
-                    b.Property<byte>("Image2")
-                        .HasColumnType("tinyint");
-
-                    b.Property<byte>("Image3")
-                        .HasColumnType("tinyint");
 
                     b.Property<int>("Member")
                         .HasColumnType("int");

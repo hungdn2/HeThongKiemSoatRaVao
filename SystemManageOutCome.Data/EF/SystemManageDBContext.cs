@@ -19,7 +19,6 @@ namespace SystemManageOutCome.Data.EF
         }
 
 
-
         public DbSet<Camera> cameras { get; set; }
         public DbSet<Employee> employees { get; set; }
         public DbSet<Role> roles { get; set; }
@@ -27,6 +26,8 @@ namespace SystemManageOutCome.Data.EF
         public DbSet<User_Role> user_Roles { get; set; }
         public DbSet<Customers> customers { get; set; }
         public DbSet<Department> departments { get; set; }
+        public DbSet<CustomerImage> CustomerIm { get; set; }
+
     }
 
 }

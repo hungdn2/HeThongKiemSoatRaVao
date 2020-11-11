@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using SystemManageOutCome.Application.Client.Catalog.CustomerService.Dtos;
-using SystemManageOutCome.Application.Client.Catalog.CustomerService.Dtos.Public;
-using SystemManageOutCome.Application.Dtos;
+using SystemManageSolution.ViewModel.Catalog.Customer;
+using SystemManageSolution.ViewModel.Catalog.Customer.Public;
+using SystemManageSolution.ViewModel.Common;
 
 namespace SystemManageOutCome.Application.Client.Catalog
 {

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SystemManageOutCome.Application.Client.Catalog.CustomerService.Dtos
+namespace SystemManageOutCome.Data.Entities
 {
-    public class CustomerViewModel
+    public class Customers
     {
 
         public int ID { set; get; }
@@ -16,9 +16,11 @@ namespace SystemManageOutCome.Application.Client.Catalog.CustomerService.Dtos
         public string CMT { set; get; }
         public DateTime DateIn { set; get; }
         public DateTime DateOut { set; get; }
-        public Byte Image1 { set; get; }
-        public Byte Image2 { set; get; }
-        public Byte Image3 { set; get; }
         public string Description { set; get; }
+        public string CreateBy { get; set; }
+        public string UpdateBy { get; set; }
+
     }
+
+
 }

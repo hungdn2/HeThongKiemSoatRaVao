@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManageOutCome.Data", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManageOutCome.Application", "SystemManageOutCome.Application\SystemManageOutCome.Application.csproj", "{493B1C6D-1F07-4342-BF3B-37C3FFF5282D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemManageOutCome.Utilities", "SystemManageOutCome.Utilities\SystemManageOutCome.Utilities.csproj", "{C8ACC6C3-AEB2-468C-9355-59628FF87041}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManageOutCome.Utilities", "SystemManageOutCome.Utilities\SystemManageOutCome.Utilities.csproj", "{C8ACC6C3-AEB2-468C-9355-59628FF87041}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemManageSolution.ViewModel", "SystemManageSolution.ViewModel\SystemManageSolution.ViewModel.csproj", "{EE38F0FB-0359-42C2-9975-AFE9080085D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{C8ACC6C3-AEB2-468C-9355-59628FF87041}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8ACC6C3-AEB2-468C-9355-59628FF87041}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8ACC6C3-AEB2-468C-9355-59628FF87041}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE38F0FB-0359-42C2-9975-AFE9080085D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE38F0FB-0359-42C2-9975-AFE9080085D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE38F0FB-0359-42C2-9975-AFE9080085D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE38F0FB-0359-42C2-9975-AFE9080085D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

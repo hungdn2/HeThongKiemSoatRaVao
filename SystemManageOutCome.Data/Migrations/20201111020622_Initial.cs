@@ -61,6 +61,24 @@ namespace SystemManageOutCome.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "CustomerIm",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Customerid = table.Column<int>(nullable: false),
+                    ImagePath = table.Column<string>(nullable: true),
+                    IsDefault = table.Column<string>(nullable: true),
+                    DateCreate = table.Column<DateTime>(nullable: false),
+                    SortOrder = table.Column<int>(nullable: false),
+                    FileSize = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CustomerIm", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "customers",
                 columns: table => new
                 {
@@ -74,9 +92,6 @@ namespace SystemManageOutCome.Data.Migrations
                     CMT = table.Column<string>(nullable: true),
                     DateIn = table.Column<DateTime>(nullable: false),
                     DateOut = table.Column<DateTime>(nullable: false),
-                    Image1 = table.Column<byte>(nullable: false),
-                    Image2 = table.Column<byte>(nullable: false),
-                    Image3 = table.Column<byte>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     CreateBy = table.Column<string>(nullable: true),
                     UpdateBy = table.Column<string>(nullable: true)
@@ -332,6 +347,9 @@ namespace SystemManageOutCome.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "cameras");
+
+            migrationBuilder.DropTable(
+                name: "CustomerIm");
 
             migrationBuilder.DropTable(
                 name: "customers");

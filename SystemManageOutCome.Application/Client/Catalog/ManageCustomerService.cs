@@ -1,16 +1,20 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using SystemManageOutCome.Application.Client.Catalog;
-using SystemManageOutCome.Application.Client.Catalog.CustomerService.Dtos;
-using SystemManageOutCome.Application.Client.Catalog.Dtos.Manage;
-using SystemManageOutCome.Application.Dtos;
+
 using SystemManageOutCome.Data.EF;
 using SystemManageOutCome.Data.Entities;
 using SystemManageOutCome.Utilities.Exceptions;
+using SystemManageSolution.ViewModel.Catalog.Customer;
+using SystemManageSolution.ViewModel.Catalog.Customer.Manage;
+using SystemManageSolution.ViewModel.Common;
 
 namespace SystemManageOutCome.Application.Client.Customer
 {
@@ -31,9 +35,19 @@ namespace SystemManageOutCome.Application.Client.Customer
                 FullName = request.FullName,
                 CMT = request.CMT,
                 Member = request.Member,
+                Description = request.Description,
                 DateIn = DateTime.Now,
                 DateOut = DateTime.Now,
+
             };
+            //save image 
+            if(request.ThumbnailImage != null)
+            {
+                //chua xu ly dc
+                var customerimage = new CustomerImage();
+              
+            }
+
             _context.customers.Add(customer);
            return await _context.SaveChangesAsync();
         }
@@ -89,6 +103,14 @@ namespace SystemManageOutCome.Application.Client.Customer
             if(customer == null) throw new SystemManageOutComeException($"can't not find customer with id: {request.ID}");
             return await _context.SaveChangesAsync();
         }
+
+        //private async Task<string> SaveFile(IFormFile file)
+        //{
+        //    var originalFileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('""');
+        //    var fileName = $"{Guid.NewGuid()}{Path.GetExtension(originalFileName)}";
+        //    await _storageService.SaveFileAsync(file.OpenReadStream(), fileName);
+        //    return fileName;
+        //}
 
 
     }

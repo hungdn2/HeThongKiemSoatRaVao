@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using SystemManageOutCome.Application.Client.Catalog.CustomerService.Dtos;
-using SystemManageOutCome.Application.Client.Catalog.Dtos.Manage;
-using SystemManageOutCome.Application.Client.Customer;
-using SystemManageOutCome.Application.Dtos;
+using SystemManageSolution.ViewModel.Catalog.Customer;
+using SystemManageSolution.ViewModel.Catalog.Customer.Manage;
+using SystemManageSolution.ViewModel.Common;
 
 namespace SystemManageOutCome.Application.Client.Catalog
 {
