@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HeThongKiemSoatRaVao", "HeT
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManageOutCome.Data", "SystemManageOutCome.Data\SystemManageOutCome.Data.csproj", "{108EA9A0-98E7-4EFB-A8D8-207C04D126E5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManageOutCome.Application", "SystemManageOutCome.Application\SystemManageOutCome.Application.csproj", "{493B1C6D-1F07-4342-BF3B-37C3FFF5282D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManageOutCome.Service", "SystemManageOutCome.Application\SystemManageOutCome.Service.csproj", "{493B1C6D-1F07-4342-BF3B-37C3FFF5282D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManageOutCome.Utilities", "SystemManageOutCome.Utilities\SystemManageOutCome.Utilities.csproj", "{C8ACC6C3-AEB2-468C-9355-59628FF87041}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SystemManageSolution.ViewModel", "SystemManageSolution.ViewModel\SystemManageSolution.ViewModel.csproj", "{EE38F0FB-0359-42C2-9975-AFE9080085D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SystemManageSolution.ViewModel", "SystemManageSolution.ViewModel\SystemManageSolution.ViewModel.csproj", "{EE38F0FB-0359-42C2-9975-AFE9080085D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

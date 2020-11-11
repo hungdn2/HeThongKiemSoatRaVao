@@ -34,6 +34,7 @@
 
   <ItemGroup>
     <Folder Include="Client\Catalog\CustomerService\Dtos\" />
+    <Folder Include="DTO\" />
   </ItemGroup>
 
 </Project>

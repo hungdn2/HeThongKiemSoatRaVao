@@ -17,10 +17,11 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.9" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SystemManageOutCome.Application\SystemManageOutCome.Application.csproj" />
+    <ProjectReference Include="..\SystemManageOutCome.Application\SystemManageOutCome.Service.csproj" />
     <ProjectReference Include="..\SystemManageOutCome.Data\SystemManageOutCome.Data.csproj" />
   </ItemGroup>
 
