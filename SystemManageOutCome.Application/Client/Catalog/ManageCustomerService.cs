@@ -28,7 +28,7 @@ namespace SystemManageOutCome.Application.Client.Customer
         }
 
 
-        public async Task<int> Create(CustomerCreateRequest request)
+        public async Task<int> Create(CustomerCreateRequest request )
         {
             var customer = new Customers()
             {
@@ -43,11 +43,11 @@ namespace SystemManageOutCome.Application.Client.Customer
             //save image 
             if(request.ThumbnailImage != null)
             {
-                //chua xu ly dc
-                var customerimage = new CustomerImage();
-              
+                
+           
             }
 
+    
             _context.customers.Add(customer);
            return await _context.SaveChangesAsync();
         }

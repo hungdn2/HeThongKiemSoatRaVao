@@ -6,5 +6,6 @@ namespace SystemManageOutCome.Application.Client.Customer
 {
     public class publicCustomerService
     {
+
     }
 }
