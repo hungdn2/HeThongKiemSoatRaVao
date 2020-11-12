@@ -43,19 +43,21 @@
 
 @section scripts {
     <script>
+        
+        $('#bt-edit').click(() => {
+            $.ajax({
+            method : 'get',
+            url: '@Url.Action("ShowEditView","Customer")',
+           // context: document.body
+        }).done(function (res) {
+            $('#exampleModalCenter').html(res);
+            $('#exampleModalCenter').modal('show');
+        });
+        });
 
-    $('#bt-edit').click(() => {
-        $.ajax({
-        method : 'get',
-        url: '@Url.Action("ShowEditView","Customer")',
-       // context: document.body
-    }).done(function (res) {
-        $('#exampleModalCenter').html(res);
-        $('#exampleModalCenter').modal('show');
-    });
-    });
+       
+
     </script>
-   
 }
 
 

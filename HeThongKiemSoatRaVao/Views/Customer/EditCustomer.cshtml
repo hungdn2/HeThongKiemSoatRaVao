@@ -1,9 +1,23 @@
-﻿
-@*
+﻿@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
+@model List<SystemManageOutCome.Data.Entities.Customers>
+@*<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>*@
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+<style>
+    .select2-container {
+        width : 100% !important;
+    }
+
+</style>
+
+<div ng-app="">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
+
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle">Thêm khách hàng</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -11,24 +25,101 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                <div class="form-group" id="listCustomerOld" ng-if="!checked">
+                    <label class="w-100" for="exampleFormControlSelect1">Danh sách khách hàng</label>
+                    <select class="form-control w-100" id="exampleFormControlSelect1">
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.ID">@item.FullName - @item.CMT </option>
+                        }
+
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <div class="form-group" id="NewC-park">
+                    <label for="exampleInputEmail1">Họ tên</label>
+                    <input type="text" class="form-control" id="nameCustomer" aria-describedby="emailHelp" placeholder="Họ tên" />
                 </div>
                 <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    <input type="checkbox" ng-model="checked" ng-init="checked=false" class="form-check-input" id="checkboxNewCustomer">
+                    <label class="form-check-label" for="exampleCheck1">Khách hàng mới</label>
                 </div>
-              
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Số chứng minh</label>
+                    <input type="text" class="form-control" id="CMND" placeholder="Số chứng minh nhân dân">
+                </div>
+                <div class="form-group row">
+                    <label for="example-datetime-local-input" class="col-12 col-form-label">Ngày giờ vào</label>
+                    <div class="col-12">
+                        <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="TimeCome">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-datetime-local-input" class="col-12 col-form-label">Ngày giờ ra</label>
+                    <div class="col-12">
+                        <input class="form-control" type="datetime-local" value="2011-08-19T13:45:00" id="TimeOut">
+                    </div>
+                </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="bt-SubmitEdit">Save changes</button>
             </div>
         </div>
     </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#exampleFormControlSelect1').select2();
+
+        $('#NewC-park').css({ "display": "none" });
+    });
+
+    $('#checkboxNewCustomer').change(() => {
+        if ($('#checkboxNewCustomer').is(":checked")) {
+            $('#NewC-park').css({ "display": "block" });
+            $('#listCustomerOld').css({ "display": "none" });
+        }
+        else {
+            $('#NewC-park').css({ "display": "none" });
+            $('#listCustomerOld').css({ "display": "block" });
+        }
+    });
+
+    $("#bt-SubmitEdit").click(() => {
+        let param = {};
+
+        if ($('#checkboxNewCustomer').is(":checked")) {
+             param = {
+                FullName: $('#nameCustomer').val(),
+                CMT: $('#CMND').val(),
+                DateIn: $('#TimeCome').val(),
+                DateOut: $('#TimeOut').val(),
+            }
+        }
+        else {
+             param = {
+                ID: $('#exampleFormControlSelect1').val(),
+                CMT: $('#CMND').val(),
+                DateIn: $('#TimeCome').val(),
+                DateOut: $('#TimeOut').val(),
+            }
+        }
+
+         $.ajax({
+                method: 'post',
+                url: '@Url.Action("SaveCustomer","Customer")',
+                data: param
+            }).done(function (res) {
+                if (res > 0) {
+                    alert("Thành công");
+                }
+                else {
+                    alert("Có lỗi xảy ra");
+                }
+            })
+    });
+
+</script>
+
