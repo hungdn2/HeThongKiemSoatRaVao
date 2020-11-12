@@ -4,44 +4,59 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Danh sách khách hàng</h6>
-        </div>
-        <div class="card-body">
-            <table class="table">
-                <caption>List of users</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First</th>
-                        <th scope="col">Last</th>
-                        <th scope="col">Handle</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@@mdo</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>2@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>3@twitter</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-     </div>
+<div class="card shadow mb-4">
+    <div class="d-flex justify-content-between card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách khách hàng</h6>
+        <button type="button" class="btn btn-primary" id="bt-edit">
+            Thêm mới
+        </button>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Họ tên</th>
+                    <th scope="col">Địa chỉ</th>
+                    <th scope="col">Số chứng minh nhân dân</th>
+                    <th scope="col">Ngày giờ vào gần nhất</th>
+                    <th scope="col">Ngày giờ ra gần nhất</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Đặng Quốc Phong</th>
+                    <td>Bắc Ninh</td>
+                    <td>1250432423</td>
+                    <td>11/11/2020</td>
+                    <td>11/11/2020</td>
+                </tr>
 
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     
+</div>
+
+@section scripts {
+    <script>
+
+    $('#bt-edit').click(() => {
+        $.ajax({
+        method : 'get',
+        url: '@Url.Action("ShowEditView","Customer")',
+       // context: document.body
+    }).done(function (res) {
+        $('#exampleModalCenter').html(res);
+        $('#exampleModalCenter').modal('show');
+    });
+    });
+    </script>
+   
+}
+
+
 

@@ -27,6 +27,7 @@ namespace SystemManageOutCome.Data.EF
         public DbSet<Customers> customers { get; set; }
         public DbSet<Department> departments { get; set; }
         public DbSet<CustomerImage> CustomerIm { get; set; }
+        public DbSet<HistoryComeOut> historyComeOuts { get; set; }
 
     }
 

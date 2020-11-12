@@ -12,5 +12,10 @@ namespace HeThongKiemSoatRaVao.Controllers
         {
             return View();
         }
+
+        public IActionResult ShowEditView()
+        {
+            return PartialView("EditCustomer");
+        }
     }
 }
