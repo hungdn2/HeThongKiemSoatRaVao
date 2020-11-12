@@ -121,5 +121,19 @@
             })
     });
 
+    $('#exampleFormControlSelect1').change(() => {
+        const id = $('#exampleFormControlSelect1').val();
+
+        $.ajax({
+            method: 'get',
+            url: `Customer/getById/${id}`,
+        }).done(function (res) {
+            console.log(res);
+            $('#TimeCome').val(res.dateIn);
+            $('#TimeOut').val(res.dateOut);
+            $('#CMND').val(res.cmt);
+        });
+    });
+
 </script>
 

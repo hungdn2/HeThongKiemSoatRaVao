@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ReflectionIT.Mvc.Paging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ namespace SystemManageOutCome.Service
         List<Customers> getAll();
         Customers findById(int Id);
         int SaveCustomer(Customers model);
+
+        PagingList<Customers> getPagination(int page, int size);
     }
 
     public class CustomerService : ICustomerService
@@ -23,7 +26,7 @@ namespace SystemManageOutCome.Service
         }
         public Customers findById(int Id)
         {
-            throw new NotImplementedException();
+            return _context.customers.Find(Id);
         }
 
         public List<Customers> getAll()
@@ -36,6 +39,8 @@ namespace SystemManageOutCome.Service
             if(model.ID <= 0)
             {
                 _context.customers.Add(model);
+                model.IsOut = 1;
+                _context.SaveChanges();
                 _context.historyComeOuts.Add(new HistoryComeOut
                 {
                     IdCustomer = model.ID,
@@ -48,8 +53,29 @@ namespace SystemManageOutCome.Service
                 var modelDB = _context.customers.Find(model.ID);
                 if(modelDB != null)
                 {
+                    modelDB.CMT = model.CMT;
                     modelDB.DateIn = model.DateIn;
                     modelDB.DateOut = model.DateOut;
+
+                    if(modelDB.IsOut == 1)
+                    {
+                        var lastHistoryOfCustomer = _context.historyComeOuts.OrderByDescending(x => x.TimeCome).FirstOrDefault(x => x.IdCustomer == modelDB.ID
+                        );
+
+                        lastHistoryOfCustomer.TimeOut = model.DateOut;
+                        modelDB.IsOut = 2;
+                    } 
+                    else if(modelDB.IsOut == 2)
+                    {
+                        _context.historyComeOuts.Add(new HistoryComeOut
+                        {
+                            IdCustomer = model.ID,
+                            TimeCome = model.DateIn,
+                            TimeOut = model.DateOut
+                        });
+
+                        modelDB.IsOut = 1;
+                    }    
                 }    
                 else
                 {
@@ -57,6 +83,12 @@ namespace SystemManageOutCome.Service
                 }    
             }
             return _context.SaveChanges();
+        }
+
+        public PagingList<Customers> getPagination(int page, int size)
+        {
+            // return _context.customers.
+            return null;
         }
     }
 }
