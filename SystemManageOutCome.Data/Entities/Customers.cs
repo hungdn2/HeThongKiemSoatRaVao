@@ -19,6 +19,7 @@ namespace SystemManageOutCome.Data.Entities
         public string Description { set; get; }
         public string CreateBy { get; set; } 
         public string UpdateBy { get; set; }
+        public int IsOut { get; set; } // 1 là chưa ra, 2 là đã ra 
 
     }
 
