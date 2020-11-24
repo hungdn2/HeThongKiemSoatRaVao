@@ -4,54 +4,143 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <div class="card shadow mb-4">
-        <div class="d-flex justify-content-between card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Danh sách khách hàng</h6>
-            <button type="button" class="btn btn-primary" id="bt-edit">
-                Thêm mới
-            </button>
-        </div>
-        <div class="card-body">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Họ tên</th>
-                        <th scope="col">Số chứng minh nhân dân</th>
-                        <th scope="col">Ngày giờ vào gần nhất</th>
-                        <th scope="col">Ngày giờ ra gần nhất</th>
-                        <th scope="col">Trạng thái</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
+
+<style>
+
+    .pagination {
+        display: inline-block;
+    }
+
+        .pagination a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+        }
+</style>
+<div class="card shadow mb-4">
+    <div class="d-flex justify-content-between card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách khách hàng</h6>
+        <button type="button" class="btn btn-primary" id="bt-edit">
+            Thêm mới
+        </button>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Họ tên</th>
+                    <th scope="col">Số chứng minh nhân dân</th>
+                    <th scope="col">Ngày giờ vào gần nhất</th>
+                    <th scope="col">Ngày giờ ra gần nhất</th>
+                    <th scope="col">Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
                     <tr>
                         <th scope="row">@item.FullName</th>
                         <td>@item.CMT</td>
                         <td>@item.DateIn</td>
                         <td>@item.DateOut</td>
                         @{
-                            var status = item.IsOut == 1 ? "Chưa ra" : "Đã ra";
+                            var status = item.IsOut == 1 ? "Trong nhà máy" : "Đã ra";
                             <td>@status</td>
                         }
                     </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <ul class="pagination">
-            <li><a href="#">1</a></li>
-            <li class="active"><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-        </ul>
+                }
+            </tbody>
+        </table>
     </div>
+    <ul class="pagination">
+        @{
+            int numberPage = ViewBag.numberPage;
+            int pageCurrent = ViewBag.pageCurrent;
+            int offset = 2;//number display page
+
+
+            //config FirstLink
+            if (pageCurrent > 1)
+            {
+                int prevPage = pageCurrent - 1;
+                var PrevLink = new Dictionary<string, string> { { "page", prevPage.ToString() } };
+                <li><a asp-controller="Customer" asp-action="Index" asp-all-route-data="PrevLink">Prev Link</a></li>
+            }
+
+            int from = pageCurrent - offset;
+            int to = pageCurrent + offset;
+            if (from <= 0)
+            {
+                from = 1;
+                to = offset * 2;
+            }
+
+
+            if (to > numberPage)
+            {
+                to = numberPage;
+            }
+
+            int i;
+            for (i = from; i <= to; i++)
+            {
+                var parms = new Dictionary<string, string>
+                    {
+                        { "page",i.ToString()}
+                    };
+                if (pageCurrent == i)
+                {
+                    <li class="active"><a asp-controller="Customer" asp-action="Index" asp-all-route-data="parms">@i</a></li>
+                }
+                else
+                {
+                    <li><a asp-controller="Customer" asp-action="Index" asp-all-route-data="parms">@i</a></li>
+                }
+
+            }
+
+            if (pageCurrent < numberPage - (to / 2))
+            {
+                <li><a>...</a></li>
+                var LastLink = new Dictionary<string, string> { { "page", numberPage.ToString() } };
+                <li><a asp-controller="Customer" asp-action="Index" asp-all-route-data="LastLink">Last Link</a></li>
+            }
+
+            if (pageCurrent < numberPage)
+            {
+                int nextPage = pageCurrent + 1;
+                var NextLink = new Dictionary<string, string> { { "page", nextPage.ToString() } };
+                <li><a asp-controller="Customer" asp-action="Index" asp-all-route-data="NextLink">Next Link</a></li>
+            }
+        }
+    </ul>
+
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @section scripts {
     <script>
@@ -66,9 +155,6 @@
             $('#exampleModalCenter').modal('show');
         });
         });
-
-       
-
     </script>
 }
 

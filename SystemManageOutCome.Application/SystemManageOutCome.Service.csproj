@@ -5,6 +5,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="DTO\**" />
+    <EmbeddedResource Remove="DTO\**" />
+    <None Remove="DTO\**" />
+  </ItemGroup>
+
 
   <ItemGroup>
   <FrameworkReference Include=" Microsoft.AspNetCore.App" />
@@ -30,11 +36,6 @@
     <ProjectReference Include="..\SystemManageOutCome.Data\SystemManageOutCome.Data.csproj" />
     <ProjectReference Include="..\SystemManageOutCome.Utilities\SystemManageOutCome.Utilities.csproj" />
     <ProjectReference Include="..\SystemManageSolution.ViewModel\SystemManageSolution.ViewModel.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Client\Catalog\CustomerService\Dtos\" />
-    <Folder Include="DTO\" />
   </ItemGroup>
 
 </Project>

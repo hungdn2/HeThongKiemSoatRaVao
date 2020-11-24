@@ -12,6 +12,7 @@
         width : 100% !important;
     }
 
+
 </style>
 
 <div ng-app="">
@@ -35,6 +36,7 @@
 
                     </select>
                 </div>
+     
                 <div class="form-group" id="NewC-park">
                     <label for="exampleInputEmail1">Họ tên</label>
                     <input type="text" class="form-control" id="nameCustomer" aria-describedby="emailHelp" placeholder="Họ tên" />
@@ -46,6 +48,14 @@
                 <div class="form-group">
                     <label for="exampleInputPassword1">Số chứng minh</label>
                     <input type="text" class="form-control" id="CMND" placeholder="Số chứng minh nhân dân">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Biển số xe</label>
+                    <input type="text" class="form-control" id="Car" placeholder="Biển số xe">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Số lượng</label>
+                    <input type="text" class="form-control" id="Menber" placeholder="Số lượng">
                 </div>
                 <div class="form-group row">
                     <label for="example-datetime-local-input" class="col-12 col-form-label">Ngày giờ vào</label>
@@ -121,6 +131,7 @@
             })
     });
 
+
     $('#exampleFormControlSelect1').change(() => {
         const id = $('#exampleFormControlSelect1').val();
 
@@ -134,6 +145,7 @@
             $('#CMND').val(res.cmt);
         });
     });
+
 
 </script>
 

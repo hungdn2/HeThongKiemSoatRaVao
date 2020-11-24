@@ -273,10 +273,10 @@ namespace SystemManageOutCome.Data.Migrations
                     b.Property<string>("CMT")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Company")
+                    b.Property<int?>("Company")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Country")
+                    b.Property<bool?>("Country")
                         .HasColumnType("bit");
 
                     b.Property<string>("CreateBy")
@@ -294,10 +294,13 @@ namespace SystemManageOutCome.Data.Migrations
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Member")
+                    b.Property<int>("IsOut")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Sex")
+                    b.Property<int?>("Member")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("Sex")
                         .HasColumnType("bit");
 
                     b.Property<string>("UpdateBy")
@@ -366,6 +369,27 @@ namespace SystemManageOutCome.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("employees");
+                });
+
+            modelBuilder.Entity("SystemManageOutCome.Data.Entities.HistoryComeOut", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("IdCustomer")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeCome")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("TimeOut")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("historyComeOuts");
                 });
 
             modelBuilder.Entity("SystemManageOutCome.Data.Entities.Permission", b =>

@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 using SystemManageOutCome.Data.EF;
+using SystemManageOutCome.Service;
 
 namespace HeThongKiemSoatRaVao
 {
@@ -29,6 +30,7 @@ namespace HeThongKiemSoatRaVao
             services.AddControllersWithViews();
             var connectionString = Configuration["ConnectionStrings:TestDatabase"];
             services.AddDbContext<SystemManageDBContext>(x => x.UseSqlServer(connectionString));
+            services.AddScoped<ICustomerService, CustomerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

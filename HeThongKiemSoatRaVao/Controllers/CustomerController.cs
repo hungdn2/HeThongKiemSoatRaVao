@@ -6,20 +6,44 @@ using HeThongKiemSoatRaVao.Parameter;
 using Microsoft.AspNetCore.Mvc;
 using SystemManageOutCome.Data.Entities;
 using SystemManageOutCome.Service;
+//using PagedList;
 
 namespace HeThongKiemSoatRaVao.Controllers
 {
     public class CustomerController : Controller
     {
-        readonly ICustomerService _ICustomerService; 
+        private readonly ICustomerService _ICustomerService; 
         public CustomerController(ICustomerService ICustomerService)
         {
             this._ICustomerService = ICustomerService;
         }
-        public IActionResult Index(BaseParameter param)
+        public IActionResult Index(int? page = 0)
         {
-            var listModel = _ICustomerService.getAll(); 
-            return View(listModel);
+            int limit = 2;
+            int start;
+            if (page > 0)
+            {
+                page = page;
+            }
+            else
+            {
+                page = 1;
+            }
+            start = (int)(page - 1) * limit;
+
+            ViewBag.pageCurrent = page;
+
+            int totalCustomer = _ICustomerService.totalCustomer();
+
+            ViewBag.totalCustomer = totalCustomer;
+
+            ViewBag.numberPage = _ICustomerService.numberPage(totalCustomer, limit);
+
+            var data = _ICustomerService.paginationCustomer(start, limit);
+
+
+            //var listModel = _ICustomerService.getAll(); 
+            return View(data);
         }
 
         public IActionResult ShowEditView()
@@ -38,5 +62,7 @@ namespace HeThongKiemSoatRaVao.Controllers
         {
             return _ICustomerService.findById(id);
         }
+
+     
     }
 }

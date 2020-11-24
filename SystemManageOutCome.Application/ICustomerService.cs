@@ -1,4 +1,4 @@
-﻿using ReflectionIT.Mvc.Paging;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,20 +10,31 @@ namespace SystemManageOutCome.Service
 {
     public interface ICustomerService
     {
+        object ViewBag { get; }
+
         List<Customers> getAll();
         Customers findById(int Id);
         int SaveCustomer(Customers model);
+        int totalCustomer();
+        int numberPage(int totalCustomer, int limit);
+        IEnumerable<Customers> paginationCustomer(int start, int limit);
 
-        PagingList<Customers> getPagination(int page, int size);
     }
 
     public class CustomerService : ICustomerService
     {
         readonly SystemManageDBContext _context;
+        private List<Customers> customers = new List<Customers>();
+
         public CustomerService(SystemManageDBContext context)
         {
             this._context = context;
+            this.customers = _context.customers.ToList();
+
         }
+
+        public object ViewBag => throw new NotImplementedException();
+
         public Customers findById(int Id)
         {
             return _context.customers.Find(Id);
@@ -32,6 +43,21 @@ namespace SystemManageOutCome.Service
         public List<Customers> getAll()
         {
             return _context.customers.ToList();
+        }
+
+        public int numberPage(int totalProduct, int limit)
+        {
+            float numberpage = totalProduct / limit;
+            return (int)Math.Ceiling(numberpage);
+
+        }
+
+        public IEnumerable<Customers> paginationCustomer(int start, int limit)
+        {
+            var data = (from s in _context.customers select s);
+            var dataProduct = data.OrderByDescending(x => x.ID).Skip(start).Take(limit);
+            return dataProduct.ToList();
+
         }
 
         public int SaveCustomer(Customers model)
@@ -85,10 +111,11 @@ namespace SystemManageOutCome.Service
             return _context.SaveChanges();
         }
 
-        public PagingList<Customers> getPagination(int page, int size)
+        public int totalCustomer()
         {
-            // return _context.customers.
-            return null;
+            return customers.Count;
+
         }
+
     }
 }
